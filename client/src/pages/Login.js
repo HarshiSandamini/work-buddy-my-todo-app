@@ -1,0 +1,67 @@
+import axios from 'axios';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from "react-cookie";
+import { Link } from 'react-router-dom';
+import { Formik, Form, ErrorMessage } from "formik";
+import TextField from "../components/TextField.js";
+import BackIcon from "../components/BackIcon";
+import {userLoginSchema} from "../Validation/UserLoginSchema"
+
+
+const Login = () => {
+  const [,setCookies] = useCookies(["access_token"]);
+
+  const navigate = useNavigate();
+  const handleSubmit = async (values) => {
+         
+    const {confirmPassword, ...data} = values;
+    try {
+      const response = await axios.post("http://localhost:3001/user/login", data);
+                if(response.data.token){
+                  setCookies("access_token", response.data.token);
+                  window.localStorage.setItem("userId", response.data.userId);
+                  navigate("/home");
+                }else{
+                  alert(response.data.message);
+                }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+return (
+  <Formik
+  initialValues={{ 
+  name: '', 
+  email: '', 
+  password: '', 
+  confirmPassword:'' 
+  }}
+  validationSchema={userLoginSchema}
+  onSubmit = {handleSubmit}
+  >
+      
+  <div className='d-flex justify-content-center align-item-center bg-secondary vh-100'>
+      <div className="bg-white p-3 rounded w-25">
+          <BackIcon/>
+          <h2>Login</h2>
+          <Form>
+              <TextField label="Email" name="email" type="email"/>
+              <ErrorMessage name='email'/>
+              <TextField label="Password" name="password" type="password"/>
+              <ErrorMessage name='password'/>
+          <button type='submit' className='btn btn-success w-100 rounded-0'>
+              Login
+          </button>
+          <p>Don't have an account?</p>
+           <Link to="/signUp">
+                SignUp
+           </Link> 
+          </Form>   
+      </div>
+  </div>
+  </Formik>
+)
+}
+
+export default Login
