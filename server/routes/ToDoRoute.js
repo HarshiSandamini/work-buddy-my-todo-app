@@ -10,7 +10,7 @@ router.get('/',async(req, res)=> {
     res.json(toDo)
 });
 
-router.post('/save',async (req, res)=> {
+router.post('/save', verifyToken, async (req, res)=> {
     const todo = new ToDoModel(req.body);  
     try{
         const response = await todo.save();
@@ -25,25 +25,25 @@ router.post('/save',async (req, res)=> {
   
 });
 
-router.put("/save", async (req, res) => {
-  try {
-    const todo = await ToDoModel.findById(req.body.toDoId); 
-    const user = await UserModel.findById(req.body.userId);
-    user.todos.push(todo);
-    await user.save();
-    res.json({ todos: user.todos });
-    console.log("Todoas added Succesfully!");
-  } catch (err) {
-    res.json(err);
-  }
-});
+// router.put("/save", async (req, res) => {
+//   try {
+//     const todo = await ToDoModel.findById(req.body.toDoId); 
+//     const user = await UserModel.findById(req.body.userId);
+//     user.todos.push(todo);
+//     await user.save();
+//     res.json({ todos: user.todos });
+//     console.log("Todoas added Succesfully!");
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
 
 
 router.get("/user-todos/:userId", async (req, res) => {
     try {
       const user = await UserModel.findById(req.params.userId);
       const userTodos = await ToDoModel.find({
-        _id: { $in: user.todos},
+        userOwner: { $in: user._id},
       });
       res.json({ userTodos});
     } catch (err) {
@@ -51,7 +51,7 @@ router.get("/user-todos/:userId", async (req, res) => {
     }
   });
 
-router.post('/update',async (req, res) => {
+router.post('/update', verifyToken, async (req, res) => {
     const{_id, text} = req.body
     ToDoModel
     .findByIdAndUpdate(_id,{text})
@@ -59,7 +59,7 @@ router.post('/update',async (req, res) => {
     .catch((err)=> console.log(err))
 });
 
-router.post('/delete',async (req, res) => {
+router.post('/delete', verifyToken, async (req, res) => {
     const{_id} = req.body
     ToDoModel
     .findByIdAndDelete(_id)

@@ -46,7 +46,7 @@ router.post("/login", async (req,res) => {
         return res.json({message:"Userrname or Password is incorrect!"});
     }else{
     const token = jwt.sign({id:user._id},"secret");
-    res.json({token, userId: user._id});
+    res.json({token, userId: user._id, userName:user.name});
     }
 });
 
