@@ -14,62 +14,68 @@ const baseUrl = "http://localhost:3001/todo"
 // }
 
 const getAllUserToDo = (setToDos, userId) => {
-    const response = axios
-    .get(`${baseUrl}/user-todos/${userId}`)
+    axios
+    .get(`${baseUrl}/user-todos/${userId}`,)
     .then(({data})=>{
         console.log('data---->', data);
-        setToDos(response.data)
+        setToDos(data.userTodos)
     })
 }
 
-const addToDo = (toDo, setToDoId, cookies, setText)=>{
+const addToDo = (toDo, cookies, setText, setToDos, userId)=>{
     axios
-    .post(`${baseUrl}/save`, toDo)   //{headers: {authorization: cookies.access_token}
+    .post(`${baseUrl}/save`, toDo, {headers: {authorization: cookies.access_token}})   //{headers: {authorization: cookies.access_token}}
     .then((data)=>{
         //console.log(data);
-        //setText("");
+        setText("");
         console.log(data);
-        setToDoId(data.data._id);
-        console.log("todoId :",data.data._id)
-        // getAllUserToDo(setToDos, userId)
+        // setToDoId(data.data._id);
+        // console.log("todoId :",data.data._id)
+        getAllUserToDo(setToDos, userId)
     })
     .catch((err)=> console.log(err))
 }
 
 
-const addUserToDo = (toDoId, userId,setToDoId, setToDos)=>{
-        axios
-        .put(`${baseUrl}/save`,{toDoId,userId})          
-        .then((data)=>{
-        //console.log(data);
-        // getAllUserToDo(setToDos, userId);
-        setToDoId("");
-        })
-        .catch((err)=> console.log(err))
-}
+// const addUserToDo = (toDoId, userId,setToDoId, setToDos)=>{
+//         axios
+//         .put(`${baseUrl}/save`,{toDoId,userId})          
+//         .then((data)=>{
+//         //console.log(data);
+//         // getAllUserToDo(setToDos, userId);
+//         setToDoId("");
+//         })
+//         .catch((err)=> console.log(err))
+// }
 
-const updateToDo = (toDoId,text,setToDo, setText, setIsUpdating)=>{
+const updateToDo = (toDoId,text,setToDos, setText, setIsUpdating, userId, cookies)=>{
     
     axios
-    .post(`${baseUrl}/update`, {_id: toDoId,text})
+    .post(`${baseUrl}/update`, {_id: toDoId,text}, {headers: {authorization: cookies.access_token}})
     .then((data)=>{
         setText("")
         setIsUpdating(false)
-        getAllUserToDo(setToDo)
+        getAllUserToDo(setToDos,userId)
     })
     .catch((err)=> console.log(err))
 }
 
-const deleteToDo = (toDoId,setToDo)=>{
+const deleteToDo = (toDoId,setToDos, userId, cookies)=>{
     
     axios
-    .post(`${baseUrl}/delete`, {_id: toDoId})
+    .post(`${baseUrl}/delete`, {_id: toDoId}, {headers: {authorization: cookies.access_token}})
     .then((data)=>{
         console.log(data)
-        getAllUserToDo(setToDo)
+        getAllUserToDo(setToDos,userId)
     })
     .catch((err)=> console.log(err))
 }
 
+const logout = (setCookies, navigate) => {
+    setCookies("access_token", "");
+    window.localStorage.removeItem("userId");
+    window.localStorage.removeItem("userName");
+    navigate("/");
+}
 
-export {addToDo, addUserToDo, updateToDo, deleteToDo, getAllUserToDo}
+export {addToDo, updateToDo, deleteToDo, getAllUserToDo, logout}

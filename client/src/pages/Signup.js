@@ -52,7 +52,7 @@ const Signup = () => {
                 <TextField label="Confirm Pasword" name="confirmPassword" type="password"/>
                 <ErrorMessage name='confirmPassword'/>
             
-            <button type='submit' className='btn btn-success w-100 rounded-0'>
+            <button type='submit' className='btn signup w-100 rounded-0'>
                 Sign Up
             </button>
             </Form>   

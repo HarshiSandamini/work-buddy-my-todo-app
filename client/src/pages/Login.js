@@ -5,8 +5,9 @@ import { useCookies } from "react-cookie";
 import { Link } from 'react-router-dom';
 import { Formik, Form, ErrorMessage } from "formik";
 import TextField from "../components/TextField.js";
+import {userLoginSchema} from "../Validation/UserLoginSchema";
+import '../index.css';
 import BackIcon from "../components/BackIcon";
-import {userLoginSchema} from "../Validation/UserLoginSchema"
 
 
 const Login = () => {
@@ -21,7 +22,8 @@ const Login = () => {
                 if(response.data.token){
                   setCookies("access_token", response.data.token);
                   window.localStorage.setItem("userId", response.data.userId);
-                  navigate("/home");
+                  window.localStorage.setItem("userName", response.data.userName);
+                  navigate("/");
                 }else{
                   alert(response.data.message);
                 }
@@ -50,7 +52,7 @@ return (
               <ErrorMessage name='email'/>
               <TextField label="Password" name="password" type="password"/>
               <ErrorMessage name='password'/>
-          <button type='submit' className='btn btn-success w-100 rounded-0'>
+          <button type='submit' className='btn login w-100 rounded-0'>
               Login
           </button>
           <p>Don't have an account?</p>
