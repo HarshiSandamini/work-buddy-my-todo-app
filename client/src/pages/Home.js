@@ -44,19 +44,6 @@ const Home = () => {
       setToDo({ ...toDo, [name]: value });
     };
 
-    // const handleSaveTodo  = (toDo, setToDoId,toDoId, cookies, setText, userId, setToDos) => {
-    //   addToDo(toDo, setToDoId, cookies, setText);
-    //   // addUserToDo(toDoId, userId,setToDoId, setToDos);
-    //   //setText("");
-    // }
-
-    // const handleSaveTodo  = (toDo, setToDoId,toDoId, cookies, setText,text, userId, setToDos) => {
-    //   addToDo(toDo, setToDoId, cookies, setText);
-    //   addUserToDo(toDoId, userId,setToDoId, setToDos);
-    //   //setText("");
-    // }
-
-
   return (
     <div>
       <Header/>
@@ -99,7 +86,6 @@ const Home = () => {
       }
       </div>
   )
-  //toDo, setToDoId, cookies, setText,toDoId, userId, setToDos
 }
 
 export default Home
