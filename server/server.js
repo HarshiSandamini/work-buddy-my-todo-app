@@ -14,7 +14,8 @@ app.use(cors())
 app.use("/todo",todoRouter);
 app.use("/user", userRouter)
 
-mongoose.connect("mongodb+srv://Harshi:harshi@todowork.lvq4pdf.mongodb.net/?retryWrites=true&w=majority", 
+mongoose.connect("mongodb+srv://Harshi:harshi@todowork.lvq4pdf.mongodb.net/?retryWrites=true&w=majority",
+ 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true,
