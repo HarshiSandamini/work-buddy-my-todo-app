@@ -18,6 +18,18 @@ body {
   padding: 0 1rem;
 }
 
+@media (max-width: 540px) {
+  .bcontent {
+    width: 100%;
+  }
+}
+
+@media (min-width: 540px) {
+  .bcontent {
+    width: 25%;
+  }
+}
+
 h3{
   margin-top: 1rem;
   text-align: center;

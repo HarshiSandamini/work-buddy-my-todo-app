@@ -39,7 +39,7 @@ const Signup = () => {
         
 
     <div className='d-flex justify-content-center align-item-center bg-secondary vh-100'>
-        <div className="bg-white p-3 rounded w-25">
+        <div className="bcontent bg-white p-3 rounded">
             <BackIcon/>
             <h2>Register</h2>
             <Form>
