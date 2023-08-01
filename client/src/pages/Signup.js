@@ -17,7 +17,7 @@ const Signup = () => {
         
         const {confirmPassword, ...data} = values;
         try {
-          await axios.post("http://localhost:3001/user/register", data);
+          await axios.post("http://3.110.134.249:3001/user/register", data);
           alert("Registration Completed! Now Login.");
           navigate("/");
         } catch (err) {

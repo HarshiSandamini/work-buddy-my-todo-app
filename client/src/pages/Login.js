@@ -18,7 +18,7 @@ const Login = () => {
          
     const {confirmPassword, ...data} = values;
     try {
-      const response = await axios.post("http://localhost:3001/user/login", data);
+      const response = await axios.post("http://3.110.134.249:3001/user/login", data);
                 if(response.data.token){
                   setCookies("access_token", response.data.token);
                   window.localStorage.setItem("userId", response.data.userId);

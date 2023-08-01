@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { useState } from "react";
 
-const baseUrl = "http://localhost:3001/todo"
+const baseUrl = "http://3.110.134.249:3001/todo"
 // const [toDoId, setToDoId] = useState("")
 
 // const getAllToDo = (setToDo) => {
