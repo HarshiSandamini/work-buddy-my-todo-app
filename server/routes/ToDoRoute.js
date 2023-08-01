@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/',async(req, res)=> {
     const toDo = await ToDoModel.find()
-    res.json(toDo)
+    res.json('Hello world')
 });
 
 router.post('/save', verifyToken, async (req, res)=> {
