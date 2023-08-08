@@ -11,6 +11,7 @@ const getAllUserToDo = (setToDos, userId) => {
 }
 
 const addToDo = (toDo, cookies, setText, setToDos, userId)=>{
+    if (toDo.text !== ""){
     axios
     .post(`${baseUrl}/save`, toDo, {headers: {authorization: cookies.access_token}}) 
     .then((data)=>{
@@ -18,12 +19,15 @@ const addToDo = (toDo, cookies, setText, setToDos, userId)=>{
         getAllUserToDo(setToDos, userId)
     })
     .catch((err)=> console.log(err))
+}else{
+    alert("Invalid Input")
+}
 }
 
 
 
 const updateToDo = (toDoId,text,setToDos, setText, setIsUpdating, userId, cookies)=>{
-    
+    if (text !== ""){
     axios
     .post(`${baseUrl}/update`, {_id: toDoId,text}, {headers: {authorization: cookies.access_token}})
     .then((data)=>{
@@ -32,6 +36,9 @@ const updateToDo = (toDoId,text,setToDos, setText, setIsUpdating, userId, cookie
         getAllUserToDo(setToDos,userId)
     })
     .catch((err)=> console.log(err))
+    }else{
+        alert("Invalid Input")
+    }
 }
 
 const deleteToDo = (toDoId,setToDos, userId, cookies)=>{

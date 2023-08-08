@@ -41,19 +41,19 @@ export const Header = () => {
                     {!userName?"Struggling to keep up with work?":`Welcome ${userName}`}
                     </div>
                     <div className='heading-small'>
-                    Lets make a list
+                    Let's make a list
                     </div>
                 </div>
             </div>
             <div className='rightside'>
                 
             {!userName&&<>
-                  <Link className='btn btn-primary btn-md' to="signup">
+                  <Link className='btn btn-md' to="signup">
                      SIGN UP
                   </Link>
                
                
-                  <Link className='btn btn-secondary btn-md' to="login">
+                  <Link className='btn btn-md' to="login">
                      LOGIN
                   </Link>
 

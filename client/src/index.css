@@ -20,6 +20,7 @@ body {
 
 h3{
   margin-top: 1rem;
+  padding-top: 5px;
   text-align: center;
   color: #992800;
 }
@@ -48,6 +49,7 @@ input{
 @media (min-width:540px){
   .conbody{
     width:25%;
+
   }
 }
 
@@ -68,17 +70,28 @@ input{
   border-radius: 3px;
 }
 
+.list{
+ padding-bottom: 1.5rem;
+}
+
 .text{
   padding: 5px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  /* -webkit-line-clamp: 2; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 40px;
 }
 
 .icons{
-  position: absolute;
+  position:absolute;
+  align-items: flex-end;
   top: 50%;
   transform: translateY(-40%);
-  right: 20px;
+  right: 5px;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.3rem;
   color: #F2D8B3;
 }
 
@@ -88,7 +101,8 @@ input{
 }
 
 .header-box{
-  width: 100%;
+  /* width: 100%; */
+  max-width: -webkit-fill-available;
   height: auto;
   padding: 15px;
   display: flex;
@@ -189,10 +203,18 @@ input{
 
 .header-box .rightside .btn, .header-box .rightside .btn:hover{
   width: 100px;
+  margin-top: 5px;
   margin-bottom: 5px;
   background-color: #992800;
   color: #F2D8B3;
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .header-box .rightside .btn, .header-box .rightside .btn:hover{
+    margin-top: 0px;
+  } 
+  
 }
 
 .date-section{
@@ -225,15 +247,70 @@ input{
   margin-left: 5px;
 }
 
-.login , .signup{
+.conbody .btn {
    color: #F2D8B3;
    background-color: #992800;
 }
+
+.conbody p{
+  padding-top: 10px;
+}
+
 
 .body-image{
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 0;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width:540px){
+  .body-image{
+    width: 200px;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -0%);
+  }
+}
+
+*{
+  box-sizing: border-box;/* new line */
+  margin: 0;
+}
+
+.header-box,img{
+  overflow: hidden;/* new line */
+  white-space: wrap;/* new line */
+  word-break: break-word;/* new line */
+}
+
+.daccount{
+  text-align: center;
+  padding: 0;
+}
+
+.regbody{
+  max-width: -webkit-fill-available;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  background-color: #F2D8B3;
+}
+
+
+
+@media (max-width:769px){
+  .regbody{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+.bicon{
+  width: 35px;
+  height: 35px;
+  padding-bottom: 5px;
 }
 

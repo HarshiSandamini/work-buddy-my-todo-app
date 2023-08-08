@@ -43,8 +43,8 @@ return (
   onSubmit = {handleSubmit}
   >
       
-  <div className='d-flex justify-content-center align-item-center bg-secondary vh-100'>
-      <div className="cnbody bg-white p-3 rounded">
+  <div className='regbody d-flex justify-content-center align-item-center vh-100'>
+      <div className="conbody p-3 rounded bg-white">
           <BackIcon/>
           <h2>Login</h2>
           <Form>
@@ -52,13 +52,15 @@ return (
               <ErrorMessage name='email'/>
               <TextField label="Password" name="password" type="password"/>
               <ErrorMessage name='password'/>
-          <button type='submit' className='btn login w-100 rounded-0'>
+          <button type='submit' className='btn w-100 rounded-1'>
               Login
           </button>
+          <div className='daccount'>
           <p>Don't have an account?</p>
            <Link to="/signUp">
                 SignUp
            </Link> 
+           </div>
           </Form>   
       </div>
   </div>

@@ -5,6 +5,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { userSignupSchema } from '../Validation/UserSignupValidation';
 import TextField from "../components/TextField.js";
 import BackIcon from "../components/BackIcon";
+import "../index.css";
 
 const Signup = () => {
 
@@ -38,8 +39,8 @@ const Signup = () => {
     >
         
 
-    <div className='d-flex justify-content-center align-item-center bg-secondary vh-100'>
-        <div className="cnbody bg-white p-3 rounded vh-100">
+    <div className='regbody d-flex justify-content-center align-item-center vh-100'>
+        <div className="conbody p-3 rounded bg-white">
             <BackIcon/>
             <h2>Register</h2>
             <Form>
@@ -52,7 +53,7 @@ const Signup = () => {
                 <TextField label="Confirm Pasword" name="confirmPassword" type="password"/>
                 <ErrorMessage name='confirmPassword'/>
             
-            <button type='submit' className='btn signup w-100 rounded-0'>
+            <button type='submit' className='btn w-100 rounded-1'>
                 Sign Up
             </button>
             </Form>   
